@@ -7,6 +7,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
   width: 100vw;
   height: 100vh;
+  background-color: #2e2940;
+}
+
+.ui.menu {
+  background-color: #1f1b2e;
+  display: flex;
+  justify-content: center;
+}
+
+.ui.menu a {
+  color: white;
 }
 
 code {
@@ -22,10 +33,15 @@ code {
 }
 
 
+.modalWindow {
+  width: 100vw;
+  height: 100vh;
+}
+
 .container {
   width: 100vw;
   height: 100vh;
-
+background-color:  #2e2940;
 }
 
 .chars {
@@ -40,4 +56,19 @@ display: flex;
 .char_item {
   margin-right: 2vw;
   margin-bottom: 2vh;
+}
+.nav_logo {
+  width: 6vw;
+  height: 8vh;
+}
+
+
+.nav_container {
+  width: 100vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #100e19;
 }
