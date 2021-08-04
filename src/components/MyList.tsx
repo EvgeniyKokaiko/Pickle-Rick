@@ -1,43 +1,52 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useCallback, useEffect, useState} from 'react';
 import {dateParser} from "../utils/DateParser";
 import Logo from "../assets/Logo.png"
+import {Todo} from "../Interfaces/interfaces";
+import {connect} from "react-redux";
+import {AddTodo, DeleteTodo, GetTodo} from "../redux/actions/actions";
 
 
-interface Todo {
-    value: string,
-    date: string,
-    confirmed: boolean
+interface IProps {
+    AddTodo(editValues: (Todo | Todo[])[]): Function
+    TodosReducer: Todo[]
+    GetTodo(): Function
+    DeleteTodo(todos: Todo[], todo: Todo): Function
 }
 
 
 
-const MyList = () => {
-
-
-
-    //Value, Date, Id
+const MyList = (props:IProps) => {
 
     const [term, setTerm] = useState("")
     const [todos, setTodos]: [Todo[], Function] = useState([])
     const [flag, setFlag] = useState(false)
+    const data = props.TodosReducer
+
     const onFormSubmit = (e: React.FormEvent): void => {
-    e.preventDefault()
+        AddTodo(todos)
+        e.preventDefault()
         const date = dateParser(new Date())
-        console.log(date)
         setTodos([...todos, {value: term, date: date, confirmed: false}])
-        console.log(todos)
+        props.AddTodo([...props.TodosReducer, ...todos])
     }
 
+    useEffect(() => {
+        props.GetTodo()
+    }, [props.GetTodo])
+
+    useEffect(() => {
+        setTodos(props.TodosReducer)
+    }, [data])
 
 
     const RenderTodos = () => {
-        return todos?.map(el => {
-            return <div className="ui comments">
+        return todos.map(el => {
+            return <div key={el.value} className="ui comments">
                 <div className="comment">
                     <div style={{float: "right"}} className="ui buttons">
-                        <button onClick={() => {el.confirmed = true;setFlag(prev => !prev)}} className={`ui ${el.confirmed === false ? "" : "positive"} button`}>{`${el.confirmed !== false ? "\u2713" : "Confirm"}`}</button>
+                        <button onClick={() => {props.AddTodo(todos);el.confirmed = true;setFlag(prev => !prev);}} className={`ui ${el.confirmed === false ? "" : "positive"} button`}>{`${el.confirmed === false ? "\u2713" : "Confirmed"}`}</button>
                         <div className="or"></div>
-                        <button className="ui negative button">Delete</button>
+                        <button onClick={() => props.DeleteTodo(todos, el)} className="ui negative button">Delete</button>
                     </div>
                     <span className="avatar">
                         <img src={Logo} />
@@ -73,4 +82,8 @@ const MyList = () => {
     );
 };
 
-export default MyList;
+const mapStateToProps = (state: any) => {
+    return state
+}
+
+export default connect(mapStateToProps, {AddTodo, GetTodo, DeleteTodo})(MyList);

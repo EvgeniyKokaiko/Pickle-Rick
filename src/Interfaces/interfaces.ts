@@ -52,3 +52,9 @@ export interface Location {
     url: string
 }
 
+
+export interface Todo {
+    value: string,
+    date: string,
+    confirmed: boolean
+}
