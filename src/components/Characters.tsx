@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from "react";
-import {FetchCharacters} from "../redux/actions/actions";
+import React, {useEffect, useMemo, useState} from "react";
+import {FetchData} from "../redux/actions/actions";
 import {connect} from "react-redux";
-import {Character, CharacterInfo} from "../Interfaces/interfaces";
+import {Character, Info} from "../Interfaces/interfaces";
 import Modal from "./Modal";
 
 interface IProps {
-    FetchCharacters(page: number): Function
-    CharactersReducer: any
+    FetchData(caller: string,page: number): Function
+    DataReducer: any
 }
 
 const Characters: React.FC<IProps> = (props): JSX.Element => {
@@ -15,16 +15,17 @@ const [page, setPage] = useState(1)
     const [char, setChar]: [Character, Function] = useState({created: "", episode: [""], gender: "", id: 0, image: "", location: {name: "", url: ""}, name: "", origin: {name: "", url: ""}, species: "", status: "", type: "", url: ""});
     const [modal, showModal] = useState(false)
     useEffect(() => {
-        setApiData(props.CharactersReducer.results)
-    },[props.CharactersReducer])
+        setApiData(props.DataReducer.results)
+        console.log(apiData)
+    },[props.DataReducer])
 
 
-    useEffect(() => {
-        props.FetchCharacters(page)
-    },[props.FetchCharacters, page])
+    useMemo(() => {
+        props.FetchData("character",page)
+    },[props.FetchData, page])
 
 
-    console.log(apiData)
+
 
 
     function ModalInfo(char: Character, cond: boolean) {
@@ -37,14 +38,14 @@ const [page, setPage] = useState(1)
             return (
                 <div className="char_item">
                     <div className="ui card">
-                        <div className="image"><img src={el.image} /></div>
+                        <div className="image"><img src={el?.image} /></div>
                         <div className="content">
-                            <span className="header">{el.name}</span>
+                            <span className="header">{el?.name}</span>
                             <div className="meta">
-                                <span className="date">{el.status}</span>
+                                <span className="date">{el?.status}</span>
                             </div>
                             <div className="description">
-                                {el.location.name}
+                                {el?.location?.name}
                             </div>
                         </div>
                         <div className="extra content">
@@ -59,7 +60,7 @@ const [page, setPage] = useState(1)
     const RenderPages = () => {
     let pages = []
         const anchorStyle = {color: "white", border: "2px solid white"}
-      for (let i = 1;i< props.CharactersReducer?.info?.pages + 1;i++) {
+      for (let i = 1;i< props.DataReducer?.info?.pages + 1;i++) {
           pages.push(<a style={anchorStyle}  onClick={() => setPage(i)} className={`item ${page === i ? "active" : ""}`}>{i}</a>)
         }
       return pages
@@ -81,4 +82,4 @@ const mapStateToProps = (state: any) => {
     return state
 }
 
-export default connect(mapStateToProps, {FetchCharacters})(Characters)
+export default connect(mapStateToProps, {FetchData})(Characters)

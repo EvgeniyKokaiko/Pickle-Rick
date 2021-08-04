@@ -1,3 +1,3 @@
 export enum PickleTypes {
-    fetchCharacters = "FETCH_CHARACTERS_DATA"
+    fetchData = "FETCH_DATA"
 }

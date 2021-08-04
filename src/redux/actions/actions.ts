@@ -4,18 +4,10 @@ import axios from "axios";
 import {PickleTypes} from "../types";
 
 
-export const FetchCharacters = (page: number) => async (dispatch: Dispatch<DispatchObj>) => {
+export const FetchData = (caller: string, page: number) => async (dispatch: Dispatch<DispatchObj>) => {
 
-    const response = await axios.get(`https://rickandmortyapi.com/api/character?page=${page}`)
-    console.log(response)
-    dispatch({type: PickleTypes.fetchCharacters, payload: response.data})
-
-}
-
-export const FetchEpisodes = (page: number) => async (dispatch: Dispatch<DispatchObj>) => {
-
-    const response = await axios.get(`https://rickandmortyapi.com/api/character?page=${page}`)
-    console.log(response)
-    dispatch({type: PickleTypes.fetchCharacters, payload: response.data})
+    const response = await axios.get(`https://rickandmortyapi.com/api/${caller}?page=${page}`)
+    dispatch({type: PickleTypes.fetchData, payload: response.data})
 
 }
+

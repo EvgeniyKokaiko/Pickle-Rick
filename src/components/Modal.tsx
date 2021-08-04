@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react"
 import {createPortal} from "react-dom";
-import Logo from "./../assets/logo.png"
 import {Character} from "../Interfaces/interfaces";
 
 const Element = document.querySelector("#modal") as HTMLElement;
@@ -18,7 +17,6 @@ const Modal = (props: IProps) => {
     useEffect(() => {
         setModalData(props.charData)
     },[props.charData])
-    console.log(props.charData)
     return createPortal(
         <div onClick={() => props.modalHandler( false)} className="ui dimmer modals visible active modalWindow">
             <div onClick={e => e.stopPropagation()} className="ui standard modal visible active modal_body">

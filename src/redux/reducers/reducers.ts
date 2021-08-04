@@ -4,8 +4,8 @@ import {PickleTypes} from "../types";
 
 
 
-function CharactersReducer(state = [], action: DispatchObj) {
-    if (action.type === PickleTypes.fetchCharacters) {
+function DataReducer(state = [], action: DispatchObj) {
+    if (action.type === PickleTypes.fetchData) {
         return action.payload
     }
 
@@ -15,6 +15,6 @@ function CharactersReducer(state = [], action: DispatchObj) {
 
 
 export default combineReducers({
-    CharactersReducer,
+    DataReducer,
 
 })
