@@ -12,25 +12,19 @@ interface IProps {
 
 const Episodes = (props: IProps) => {
     const [page, setPage] = useState(1)
-    const [info, setInfo] = useState([]);
     const [apiData, setApiData]: [Episode[], Function] = useState([])
+
     useEffect(() => {
         props.FetchData("episode",page)
-        setApiData(props.DataReducer.results)
-        setInfo(props.DataReducer.info)
+        setApiData([])
     },[props.FetchData, page])
-
-
-
     useEffect(() => {
         setApiData(props.DataReducer.results)
-        setInfo(props.DataReducer.info)
-        console.log(info, apiData)
     }, [props.DataReducer])
 
 
     const RenderList = () => {
-        return apiData?.map(el => {
+        return apiData?.sort().map(el => {
             return (
                 <tr key={el.created}>
                     <td>

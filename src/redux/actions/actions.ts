@@ -11,3 +11,10 @@ export const FetchData = (caller: string, page: number) => async (dispatch: Disp
 
 }
 
+export const AddTodo = (editValues: string) => async (dispatch: Dispatch<DispatchObj>) => {
+    const response = await axios.patch(`http://localhost:3001/storage/`, {todos: editValues})
+    dispatch({type: PickleTypes.AddTodo, payload: response.data})
+}
+
+
+

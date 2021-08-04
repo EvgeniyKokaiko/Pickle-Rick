@@ -16,5 +16,4 @@ function DataReducer(state = [], action: DispatchObj) {
 
 export default combineReducers({
     DataReducer,
-
 })

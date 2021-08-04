@@ -1,3 +1,5 @@
+
 export enum PickleTypes {
-    fetchData = "FETCH_DATA"
+    fetchData = "FETCH_DATA",
+    AddTodo = "ADD_TODO"
 }

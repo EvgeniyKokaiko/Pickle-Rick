@@ -1,4 +1,4 @@
-export const dateParser = (timestamp: string, localtime = 0) => {
+export const dateParser = (timestamp: any, localtime = 0): string => {
     const parser = new Date(Date.parse(timestamp))
     const day = parser.getDate() === 0 ? 1 : parser.getDate()
     const month = parser.getMonth() === 0 ? 1 : parser.getMonth()
