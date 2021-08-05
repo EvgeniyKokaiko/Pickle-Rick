@@ -1,8 +1,8 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100vw;
@@ -36,8 +36,8 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 .table_body {
@@ -48,7 +48,7 @@ code {
 }
 
 tr:hover {
-  background: #F6F6F6;
+  background: #f6f6f6;
   transition: 0.6s;
 }
 
@@ -57,14 +57,12 @@ thead tr {
 }
 
 .action {
-  color: #5D5FEF;
+  color: #5d5fef;
 }
 
 .disable {
-  color: #EF5DA8;
+  color: #ef5da8;
 }
-
-
 
 .modalWindow {
   width: 100vw;
@@ -74,12 +72,11 @@ thead tr {
 .container {
   width: 100vw;
   height: 100vh;
-background-color:  #2e2940;
+  background-color: #2e2940;
 }
 
 .chars {
-
-display: flex;
+  display: flex;
   justify-content: space-around;
   flex-direction: row;
   flex-wrap: wrap;
@@ -94,7 +91,6 @@ display: flex;
   width: 6vw;
   height: 8vh;
 }
-
 
 .nav_container {
   width: 100vw;
