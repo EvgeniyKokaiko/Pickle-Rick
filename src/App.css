@@ -56,14 +56,6 @@ thead tr {
   cursor: pointer;
 }
 
-.action {
-  color: #5d5fef;
-}
-
-.disable {
-  color: #ef5da8;
-}
-
 .modalWindow {
   width: 100vw;
   height: 100vh;

@@ -12,9 +12,10 @@ interface IProps {
   DeleteTodo(todos: Todo[], todo: Todo): Function;
 }
 
-const MyList = (props: IProps) => {
+const MyList = (props: IProps): JSX.Element => {
   const [term, setTerm]: [string, Function] = useState("");
   const [todos, setTodos]: [Todo[], Function] = useState([]);
+  const [flag, setFlag]: [boolean, Function] = useState(false);
   const data = props.TodosReducer;
   const ref = useRef<HTMLInputElement>(document.createElement("input"));
 
@@ -28,8 +29,11 @@ const MyList = (props: IProps) => {
   useEffect(() => {
     props.GetTodo();
     ref.current.focus();
+  }, [props.GetTodo]);
+
+  useEffect(() => {
     setTodos(props.TodosReducer);
-  }, [props.GetTodo, data]);
+  }, [data]);
 
   const RenderTodos = () => {
     return todos.map((el) => {
@@ -41,12 +45,13 @@ const MyList = (props: IProps) => {
                 onClick={() => {
                   props.AddTodo(todos);
                   el.confirmed = true;
+                  setFlag((prev: boolean) => !prev);
                 }}
                 className={`ui ${
                   el.confirmed === false ? "" : "positive"
                 } button`}
               >{`${el.confirmed === false ? "\u2713" : "Confirmed"}`}</button>
-              <div className="or" />
+              <div className="or"></div>
               <form onSubmit={() => props.DeleteTodo(todos, el)}>
                 <button className="ui negative button">Delete</button>
               </form>

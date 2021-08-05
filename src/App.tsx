@@ -11,7 +11,7 @@ interface IState {}
 interface IProps {}
 
 class App extends React.Component<IProps, IState> {
-  render() {
+  render(): JSX.Element {
     return (
       <BrowserRouter>
         <NavBar />

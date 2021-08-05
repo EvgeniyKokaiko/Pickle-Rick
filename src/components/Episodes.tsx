@@ -9,7 +9,7 @@ interface IProps {
   DataReducer: any;
 }
 
-const Episodes = (props: IProps) => {
+const Episodes = (props: IProps): JSX.Element => {
   const [page, setPage]: [number, Function] = useState(1);
   const [apiData, setApiData]: [Episode[], Function] = useState([]);
   const [filter, setFilter]: [Episode[], Function] = useState([]);
@@ -66,7 +66,7 @@ const Episodes = (props: IProps) => {
           style={anchorStyle}
           onClick={() => {
             setPage(i);
-            setSearched("")
+            setSearched("");
           }}
           className={`item ${page === i ? "active" : ""}`}
         >

@@ -11,9 +11,9 @@ interface IProps {
 
 const Characters: React.FC<IProps> = (props): JSX.Element => {
   const [apiData, setApiData]: [Character[], Function] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage]: [number, Function] = useState(1);
   const [filter, setFilter]: [Character[], Function] = useState([]);
-  const [searched, setSearched]: [any, Function] = useState("");
+  const [searched, setSearched]: [string, Function] = useState("");
   const [char, setChar]: [Character, Function] = useState({
     created: "",
     episode: [""],
@@ -31,7 +31,6 @@ const Characters: React.FC<IProps> = (props): JSX.Element => {
   const [modal, showModal] = useState(false);
   useEffect(() => {
     setApiData(props.DataReducer.results);
-    console.log(apiData);
   }, [props.DataReducer]);
 
   const renderCondition = () => {
@@ -68,7 +67,7 @@ const Characters: React.FC<IProps> = (props): JSX.Element => {
         <div className="ui items">
           <div className="item">
             <div className="image">
-              <img src={modalData?.image} />
+              <img src={modalData?.image} alt="image" />
             </div>
             <div className="content">
               <span className="header">Gender: {modalData?.gender}</span>
@@ -114,7 +113,7 @@ const Characters: React.FC<IProps> = (props): JSX.Element => {
         <div className="char_item">
           <div className="ui card">
             <div className="image">
-              <img src={el?.image} />
+              <img src={el?.image} alt="image" />
             </div>
             <div className="content">
               <span className="header">{el?.name}</span>
@@ -147,7 +146,10 @@ const Characters: React.FC<IProps> = (props): JSX.Element => {
       pages.push(
         <a
           style={anchorStyle}
-          onClick={() => {setPage(i);setSearched("")}}
+          onClick={() => {
+            setPage(i);
+            setSearched("");
+          }}
           className={`item ${page === i ? "active" : ""}`}
         >
           {i}
@@ -171,7 +173,7 @@ const Characters: React.FC<IProps> = (props): JSX.Element => {
           type="text"
           placeholder="Search by: Name, Gender, Status, Species..."
         />
-        <i className="search icon"></i>
+        <i className="search icon" />
       </div>
       <div className="chars">{RenderList()}</div>
     </div>
